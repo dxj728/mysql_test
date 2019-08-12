@@ -47,5 +47,23 @@
         a.只能删除整个表的所有记录，且自动增长字段默认从1开始
 
 
-6 内连接
-    select * from
+6 内连接(inner join子句)
+    select * from d.表1 as a
+    inner join d.表2 as b
+    on a.字段1 = b.字段1;
+    获取两个表中字段匹配关系的记录。
+    上句等同于：
+    select * from d.表1 as a, d.表2 as b
+    where a.字段1 = b.字段1;
+
+7 左连接(left join子句)
+    select * from 表1
+    left join 表2
+    on 表1.字段1 = 表2.字段2;
+    获取左表(表1)的符合条件的所有数据，无论右表(表2)是否有对应值(无值为null)
+
+8 右连接(right join子句)
+    select * from 表1
+    right join 表2
+    on 表1.字段1 = 表2.字段2;
+    读取右表(表2)中符合条件的全部数据，即便左表(表1)无对应数据(无值为null)
