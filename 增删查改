@@ -67,3 +67,12 @@
     right join 表2
     on 表1.字段1 = 表2.字段2;
     读取右表(表2)中符合条件的全部数据，即便左表(表1)无对应数据(无值为null)
+
+9 全连接：不支持
+    oracle支持full join全连接，mysql不支持，但可以通过 左连接+union+右连接 实现
+    非例：
+        select * from 表1
+        left join 表2 on 表1.字段1 = 表2.字段2
+        union
+        select * from 表1
+        right join 表2 on 表1.字段1 = 表2.字段2
