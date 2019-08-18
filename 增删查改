@@ -91,7 +91,7 @@
         a. 默认状态下，UNION 操作符已经删除了重复数据，所以 DISTINCT 修饰符对结果没啥影响。
         b. 两表查询字段五关联，但必须个数对应。union只是将结果逐个输出，不涉及对应关联字段。
 
-11 排序(order子句)
+11 排序(order by子句)
     select 字段1, 字段2, ...
     from 表1
     [where 条件表达式]
@@ -99,5 +99,29 @@
     注：
         a.默认状态下，order by 字段 为升序排列
         b.多字段排序是，按照字段前后优先级排序
+
+12 分组(group by子句)
+    select 列名, 聚合函数(列名)
+    from 表
+    [where 条件表达式]
+    group by 列名,
+    注：
+        a. select中的字段要么包含在group中，作为分组的依据，要么应该包含在聚合函数中
+
+    多列分组(group by all子句)
+    select 字段1, 字段2, 聚合函数(字段3)
+    from 表
+    [where 条件表达式]
+    group by all 字段1, 字段2,
+    注：
+        a. 本质上是将字段1，字段2合并后的值作为分组依据
+    聚合函数：
+    sum(列名)	求和	　　　　
+    max(列名)	最大值	　　　　
+    min(列名)	最小值	　　　　
+    avg(列名)	平均值	　　　　
+    first(列名)	第一条记录	仅Access支持
+    last(列名)	最后一条记录	仅Access支持
+    count(列名)	统计记录数	注意和count(*)的区别
 
 
