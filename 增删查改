@@ -21,6 +21,7 @@
         d.你可以使用 WHERE 语句来包含任何条件。
         e.你可以使用 LIMIT 属性来设定返回的记录数。
         f.你可以通过OFFSET指定SELECT语句开始查询的数据偏移量。默认情况下偏移量为0。
+        g.不能使用=NULL或!=NULL在列中查找NULL值，因为均返回false。必须使用is NULL 和is not NULL运算符
 
 3 修改：
     update 表名
@@ -123,5 +124,6 @@
     first(列名)	第一条记录	仅Access支持
     last(列名)	最后一条记录	仅Access支持
     count(列名)	统计记录数	注意和count(*)的区别
+
 
 
