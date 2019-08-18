@@ -73,6 +73,31 @@
     非例：
         select * from 表1
         left join 表2 on 表1.字段1 = 表2.字段2
-        union
+        union(联合)
         select * from 表1
-        right join 表2 on 表1.字段1 = 表2.字段2
+        right join 表2 on 表1.字段1 = 表2.字段2;
+
+10 联合(union子句)
+    MySQL UNION 操作符用于连接两个以上的 SELECT 语句的结果组合到一个结果集合中。多个 SELECT 语句会删除重复的数据。
+
+    select 字段1, 字段2, ...
+    from 表1
+    [where 条件表达式]
+    union [ all  | distinct ]
+    select 字段3, 字段4, ...
+    from 表2
+    [where 条件表达式];
+    注：
+        a. 默认状态下，UNION 操作符已经删除了重复数据，所以 DISTINCT 修饰符对结果没啥影响。
+        b. 两表查询字段五关联，但必须个数对应。union只是将结果逐个输出，不涉及对应关联字段。
+
+11 排序(order子句)
+    select 字段1, 字段2, ...
+    from 表1
+    [where 条件表达式]
+    order by 字段1 ASC, 字段2 DESC;
+    注：
+        a.默认状态下，order by 字段 为升序排列
+        b.多字段排序是，按照字段前后优先级排序
+
+
