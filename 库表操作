@@ -6,31 +6,64 @@
 
 2 数据库操作：
     2.1 创建数据库
-    CREATE DATABASE 数据库名;
+        CREATE DATABASE 数据库名;
     2.2 删除数据库
-    DROP DATABASE 数据库名;
+        DROP DATABASE 数据库名;
     2.3 显示所有数据库
-    show databases;
+        show databases;
     2.3 选择数据库
-    use 数据库名;
+        use 数据库名;
 
 3 数据表操作：
     3.1 创建表
-    CREATE TABLE 表名(列名 类型, PRIMARY KEY(列名) )ENGINE=INNODB DEFAULT CHARSET=utf8;
-    例：
-    CREATE TABLE table_test
-        (id INT UNSIGNED AUTO_INCREMENT,
-        auther VARCHAR(100) NOT NULL,
-        age TINYINT,
-        update_time DATE,
-        PRIMARY KEY(id,auther)
-        )ENGINE=INNODB DEFAULT CHARSET=utf8;
-    注：
-        a.如果你不想字段为 NULL 可以设置字段的属性为 NOT NULL， 在操作数据库时如果输入该字段的数据为NULL ，就会报错。
-        b.AUTO_INCREMENT定义列为自增的属性，一般用于主键，数值会自动加1。
-        c.PRIMARY KEY关键字用于定义列为主键。 您可以使用多列来定义主键，列间以逗号分隔。
-        d.ENGINE 设置存储引擎(Innodb/MyISAM)，CHARSET 设置编码。
+        CREATE TABLE 表名(列名 类型, PRIMARY KEY(列名) )ENGINE=INNODB DEFAULT CHARSET=utf8;
+        例：
+        CREATE TABLE table_test
+            (id INT UNSIGNED AUTO_INCREMENT,
+            auther VARCHAR(100) NOT NULL,
+            age TINYINT,
+            update_time DATE,
+            PRIMARY KEY(id,auther)
+            )ENGINE=INNODB DEFAULT CHARSET=utf8;
+        注：
+            a.如果你不想字段为 NULL 可以设置字段的属性为 NOT NULL， 在操作数据库时如果输入该字段的数据为NULL ，就会报错。
+            b.AUTO_INCREMENT定义列为自增的属性，一般用于主键，数值会自动加1。
+            c.PRIMARY KEY关键字用于定义列为主键。 您可以使用多列来定义主键，列间以逗号分隔。
+            d.ENGINE 设置存储引擎(Innodb/MyISAM)，CHARSET 设置编码。
     3.2 删除表
-    DROP TABLE 表名;
+        DROP TABLE 表名;
+    3.3 清空表
+        truncate table 表名;
+        注：
+           a.删除表中所有记录，且自动增长字段默认从1开始。但不会删除表。
+    3.4 修改表名
+        alter table 原表名 rename to 新表名;
+    3.5 修改表类型(引擎)
+        alter table 表名 engine = myisam;
+    3.5 查看表类型或状态
+        show table;                         # 查看数据库所有表名
+        show table status;                  # 查看数据库中所有表状态
+        show table status like '表名'\G;    # 以纵向方式显示筛选后表状态
+
+4 表字段操作（alter语句）：
+    4.1 增加表字段
+        alter table 表名 add 字段1 int;
+        字段1将被自动添加到表的末尾
+        ALTER TABLE 表名 ADD 字段 INT FIRST;    # 字段添加至首列
+        ALTER TABLE 表名 ADD 字段1 INT AFTER 字段2;     # 新增字段1添加至字段2之后
+    4.2 删除表字段
+        alter table 表名 drop 字段;
+    4.3 修改字段类型及名称
+        modify：修改字段类型，增加字段默认值
+            alter table 表名 modify 字段 类型;
+            alter table 表名 modify 字段 类型 not NULL default 值;
+            例：ALTER TABLE tbl MODIFY c CHAR(10);
+        change：修改字段名称及类型
+            alter table 表名 change 原字段 新字段 类型;
+            例：ALTER TABLE testalter_tbl CHANGE j j INT;
+    4.4 修改字段默认值
+        alter table 表 alter 字段 set default 值;
+    4.5 删除字段默认值
+        alter table 表 alter 字段 drop default;
 
 
