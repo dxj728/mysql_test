@@ -125,5 +125,17 @@
         last(列名)	最后一条记录	仅Access支持
         count(列名)	统计记录数	注意和count(*)的区别
 
+13 having子句
+    having子句用于在where对数据进行筛选后对结果再次进行聚合筛选，通常与group by子句一起使用，以根据指定的条件过滤分组
+
+    select 字段1, 聚合函数(字段2)
+    from 表
+    [where 条件表达式]
+    group by all 字段1
+    having 聚合函数(字段2)表达式
+    注：
+        a.如果省略了group by子句，则having子句的行为与where子句类似
+
+
 
 
